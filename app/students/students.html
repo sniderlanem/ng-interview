@@ -1,4 +1,42 @@
 <h2>Students</h2>
-<ul>
-	<li>Here are your students...</li>
-</ul>
+
+<div class="row">
+	<div class="col-xs-12 col-md-4">
+			<div class="form-group">
+				<label for="filter">Search for Student</label>
+				<input type="text" class="form-control" id="filter" data-ng-model="vm.search"/>
+			</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-xs-12 col-md-4">
+		<ul>
+			<li data-ng-repeat="s in vm.students track by s.Id" data-ng-class="{ 'bg-info' : s.Id == vm.current.Id}">
+				<a data-ng-click="vm.setCurrentStudent(s)">
+					{{ s.FirstName }} {{ s.LastName }}
+				</a>
+			</li>
+		</ul>
+	</div>
+	<div class="col-xs-12 col-md-8 well" data-ng-show="vm.current">
+		<h4>
+			{{ vm.current.FirstName }} {{ vm.current.LastName }}
+			<span class="small pull-right">
+				Student #{{ vm.current.Id }}
+			</span>
+		</h4>
+		<dl class="dl-horizontal">
+
+			<dt>Favorite Food</dt>
+			<dd>{{ vm.current.FavoriteFood }}</dd>
+
+			<dt>Favorite Color</dt>
+			<dd>{{ vm.current.FavoriteColor }}</dd>
+
+			<dt>Favorite Movie</dt>
+			<dd>{{ vm.current.FavoriteMovie }}</dd>
+
+		</dl>
+	</div>
+</div>
